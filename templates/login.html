@@ -13,8 +13,12 @@
 </head>
 <body>
   <div class="wrapper">
-    <form method="post" action="{{action_url}}">
-        <h1>Login</h1>
+    <form method="post" action="{{ action_url }}">
+        <h1>
+          {% block title_text %}
+            Login
+          {% endblock %}
+        </h1>
         <div class="input-box">
             <input name="username" type="text" placeholder="Username" required>
             <i class='bx bxs-user'></i>
