@@ -57,8 +57,15 @@ def login():
     else:
         return render_template("login.html")
 
-
+# Home page route
 @app.route("/")
 @login_required
 def index():
     return render_template("index.html")
+
+# Register route
+@app.route('/register',methods = ["GET","POST"])
+def register():
+    if request.method == "GET":
+        return render_template('register.html')
+

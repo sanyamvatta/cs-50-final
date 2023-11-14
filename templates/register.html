@@ -1,0 +1,25 @@
+{% extends "login.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block additonal_input %}
+
+<div class="input-box">
+  <input name="confirm-pass" type="password" placeholder="confirm password" required>
+  <i class='bx bxs-lock-alt'></i>
+</div>
+
+{% endblock %}
+
+{% block action_text %}
+Register
+
+{% endblock %}
+
+{% block footer_text %}
+<p>Already have an account? 
+  <a href="/login">Login</a>
+</p>
+{% endblock %}
