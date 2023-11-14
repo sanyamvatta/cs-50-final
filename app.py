@@ -73,5 +73,6 @@ def register():
     else:
         username = request.form.get("username")
         password = request.form.get("password")
+        return apology('haha')
 
 
