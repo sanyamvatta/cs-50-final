@@ -19,3 +19,24 @@ document.addEventListener("DOMContentLoaded",function(){
    }
    } 
  })
+
+ document.addEventListener("DOMContentLoaded", function() {
+  // Capture the current URL before redirection
+  var previousUrl = document.referrer;
+
+  // Store the previous URL in sessionStorage
+  sessionStorage.setItem("previousUrl", previousUrl);
+
+  // Add a click event listener to the "Go Back" button
+  var backButton = document.getElementById("backButton");
+  backButton.addEventListener("click", function() {
+      // Retrieve the previous URL from sessionStorage and navigate to it
+      var storedUrl = sessionStorage.getItem("previousUrl");
+      if (storedUrl) {
+          window.location.href = storedUrl;
+      } else {
+          // Handle the case when there is no stored URL
+          alert("No previous URL available");
+      }
+  });
+});

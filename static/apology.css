@@ -1,9 +1,10 @@
+
 body{
   margin:0;
   padding:0;
   font-family: 'Tomorrow', sans-serif;
   height:100vh;
-background-image: linear-gradient(to top, #2e1753, #1f1746, #131537, #0d1028, #050819);
+  background-image: linear-gradient(to top, #2e1753, #1f1746, #131537, #0d1028, #050819);
   display:flex;
   justify-content:center;
   align-items:center;
@@ -69,4 +70,59 @@ h1{
   100%{
     background:rgba(255,255,255,0.4);
   }
+}
+
+.backButton {
+  background: #7079f0;
+  color: white;
+  font-family: inherit;
+  padding: 0.45em;
+  padding-left: 1.0em;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 0.9em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em #714da6;
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3em;
+}
+
+.iconButton {
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em #7a8cf3;
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.backButton:hover {
+  transform: translate(-0.05em, -0.05em);
+  box-shadow: 0.15em 0.15em #5566c2;
+}
+
+.backButton:active {
+  transform: translate(0.05em, 0.05em);
+  box-shadow: 0.05em 0.05em #5566c2;
+}
+
+.btn-container {
+  padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.err-text {
+  font-size: large;
+  font-weight: 700;
 }
