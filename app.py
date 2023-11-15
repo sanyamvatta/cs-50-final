@@ -61,7 +61,6 @@ def login():
 
 # Home page route
 @app.route("/")
-@login_required
 def index():
     return render_template("index.html")
 
@@ -73,5 +72,28 @@ def register():
     else:
         username = request.form.get("username")
         password = request.form.get("password")
+        confirm = request.form.get("confirm-pass")
+
+        if not username or not password or not confirm:
+            return apology('All 3 fields are compulsory')
+        
+        prev_usernames = db.execute("SELECT * FROM users WHERE username = ?",username)
+
+        if prev_usernames:
+            return apology('The username is already in use.')
+        
+        if len(password) < 8:
+            return apology('Password must be at least 8 characters')
+        
+        if password != confirm:
+            return apology("The password and confirm password do not match.")
+        
+        db.execute("INSERT INTO users (username,hash) VALUES (?,?)",username,generate_password_hash(password))
+        
+        return redirect('/dashboard')
 
 
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    return render_template('dashboard.html')
