@@ -3,9 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/landing.css">
   <title>Document</title>
 </head>
 <body>
-  
+  <header class="header">
+    <p class="logo">GetQuizzed</p>
+    <nav class="nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="#benefits" class="nav-link">Benefits</a>
+        </li>
+        <li class="nav-item">
+          <a href="#about" class="nav-link">About us</a>
+        </li>
+        <li class="nav-item">
+          <a id="ctaNavButton" class="cta-nav-btn" href="/register">Get Started</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main class="main">
+    <h1 class="heading">GetQuizzed: Unleash Your Knowledge, Challenge Your Mind!</h1>
+
+    <section id="benefits" class="benefits">
+      <h1 class="b-head">Benefits of Quizzing</h1>
+      <ol>
+        <li style="--accent-color: #635E78">Quizzing reinforces learning and helps in better retention of information.</li>
+        <li style="--accent-color: #4A2764">Regular quizzing sharpens the mind, fostering analytical and problem-solving abilities.</li>
+        <li style="--accent-color: #3A3258">Engaging in quizzes encourages a habit of continuous learning and curiosity.</li>
+        <li style="--accent-color: #351F47">Quizzes provide a clear measure of progress, allowing users to set and achieve learning goals.</li>
+        <li style="--accent-color: #291E3E">Successfully completing quizzes instills a sense of accomplishment, motivating further learning.</li>
+      </ol>
+    </section>
+
+    <section id="about" class="getting-started">
+      <h1>Who are we?</h1>
+      <p class="about-text">
+        Welcome to the heart of our digital realm, where curiosity meets knowledge, and each keystroke unveils a journey of discovery. At GetQuizzed, we are the architects of intrigue, crafting an immersive space for minds to dance with possibilities. Our story begins with a passion for quizzing, a love affair with the obscure, and a commitment to transform learning into an exhilarating quest. We are not just creators; we are dreamweavers, painting the canvas of education with hues of excitement. Join us on this odyssey, where every quiz is an adventure, every question a riddle, and every answer a key to unlocking the mysteries of knowledge. Embark on the extraordinary—because here, brilliance knows no bounds.</p>
+    </section>
+
+    <section id="cta" class="cta">
+      <h1 class="cta-text">So what are you waiting for</h1>
+      <a id="ctaButton" class="cta-button" href="/register">Get started</a>
+    </section>
+  </main>
+  <footer>
+    <p class="footer-text">&copy; Copyright GetQuizzed 2023-2025</p>
+  </footer>
 </body>
+<script src="/static/landing.js"></script>
 </html>
