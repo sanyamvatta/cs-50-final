@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+/*these classes are nessesary if you want to Use navbar only*/
+:root {
+  --white: white;
+  --black: rgb(0, 0, 0);
+  --links: 18px;
+  --paragraph: 24px;
+  --heading: 40px;
+  --logoS: 100px;
+}
+
+
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  backdrop-filter: invert(20%);
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.678);
+
+}
+
+.logo {
+  width: var(--logoS);
+  padding: 10px 15px;
+}
+
+.container-nav {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.data-icons {
+  display: none;
+  padding: 10px 15px;
+}
+
+a {
+  font-size: var(--links);
+  text-decoration: none;
+  padding: 10px 15px;
+  margin: 10px;
+  transition: all 0.5s;
+  color: var(--white);
+  border-radius: 25px;
+}
+
+i {
+  color: var(--white);
+}
+
+a:hover {
+  background-color: var(--white);
+
+  color: var(--black);
+  transform: scale(1.05);
+}
+
+.data-links {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+.size {
+  font-size: 30px;
+  padding: 5px 7px;
+}
+h1 i{
+  color: rgb(255, 96, 123);
+}
+
+
+/*these classes are temporary to just have a rich view of sreen*/
+.header {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /*temporary you can remove it, i just applied it to have a full screen view of my work*/
+  min-width: 100%;
+  background: url(/static/background.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.main{
+  padding: 6% 2%;
+  color: white;
+}
+
+@media (max-width:860px) {
+  a {
+      padding: 5px 7px;
+      margin: 5px;
+  }
+
+  .logo {
+      padding: 5px 7px;
+  }
+
+}
+
+@media (max-width:730px) {
+  .data-links {
+      position: absolute;
+      flex-direction: column;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.678);
+      transform: translateY(-200%);
+      filter: blur(20px);
+      transition: all 0.5s;
+      text-align: center;
+  }
+  a {
+      width: 100%;
+      margin: 0;
+      border-radius: 0;
+  }
+  .data-icons {
+      display: block;
+      padding: 5px 7px;
+  }
+  .main{
+    padding: 14vh 2%;
+  }
+}
+
+
