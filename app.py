@@ -97,3 +97,10 @@ def register():
 @login_required
 def dashboard():
     return render_template('dashboard.html')
+
+
+@app.route('/signout')
+@login_required
+def signout():
+    session.clear()
+    return redirect('/')
