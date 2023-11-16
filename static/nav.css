@@ -22,7 +22,6 @@
   justify-content: center;
   width: 100%;
   backdrop-filter: invert(20%);
-  position: fixed;
   background-color: rgba(0, 0, 0, 0.678);
 
 }

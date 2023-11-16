@@ -4,6 +4,35 @@
   Dashbaord
 {% endblock %}
 
+{% block links %}
+
+<link rel="stylesheet" href="/static/dashboard.css">
+
+{% endblock %}
+
 {% block main %}
-  
+  <div class="wrapper">
+    {% for quiz in quizzes %}
+    <div class="container">
+      <div class="parent">
+            <div class="card">
+                <div class="logo-card">
+                    <span class="circle circle4"></span>
+                    <span class="circle circle5">
+                      <span class="question">?</span>
+                    </span>
+                </div>
+                <div class="glass"></div>
+                <div class="content">
+                    <span class="title">{{ quiz['title'] }}</span>
+                    <span class="text">{{ quiz['description'] }}</span>
+                    <br>
+                    <a class="q-button" href=""> Do it now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <h1 class="loading-text">More coming soon...</h1>
+  </div>
 {% endblock %}
