@@ -27,12 +27,12 @@
                     <span class="title">{{ quiz['title'] }}</span>
                     <span class="text">{{ quiz['description'] }}</span>
                     <br>
-                    <a class="q-button" href=""> Do it now</a>
+                    <a class="q-button" href="/quiz/{{ quizzes.index(quiz) + 1 }}"> Go for it</a>
                 </div>
             </div>
         </div>
     </div>
     {% endfor %}
-    <h1 class="loading-text">More coming soon...</h1>
+    <div class="loading-text" id="loadingText" onmouseover="startLoading()">More Coming Soon</div>
   </div>
 {% endblock %}

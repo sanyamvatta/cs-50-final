@@ -13,3 +13,30 @@ CREATE TABLE Quizzes (
     description TEXT
 );
 
+-- Questions table schema
+
+CREATE TABLE Questions (
+    question_id INTEGER PRIMARY KEY,
+    quiz_id INTEGER NOT NULL,
+    question_text TEXT NOT NULL,
+    FOREIGN KEY (quiz_id) REFERENCES Quizzes(quiz_id)
+);
+
+-- Answers table schema
+CREATE TABLE Answers (
+    answer_id INTEGER PRIMARY KEY,
+    question_id INTEGER NOT NULL,
+    answer_text TEXT NOT NULL,
+    is_correct BOOLEAN NOT NULL,
+    FOREIGN KEY (question_id) REFERENCES Questions(question_id)
+);
+-- Scores table schema
+CREATE TABLE Scores (
+    score_id INTEGER PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    quiz_id INTEGER NOT NULL,
+    score INTEGER NOT NULL,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (quiz_id) REFERENCES Quizzes(quiz_id)
+);

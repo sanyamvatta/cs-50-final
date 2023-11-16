@@ -97,7 +97,7 @@ def register():
 @login_required
 def dashboard():
     quizzes = db.execute("SELECT * FROM Quizzes")
-    return render_template('dashboard.html',quizzes=quizzes)
+    return render_template('dashboard.html',quizzes=quizzes,index=index)
 
 
 @app.route('/signout')
