@@ -105,3 +105,34 @@ def dashboard():
 def signout():
     session.clear()
     return redirect('/')
+
+# Get answers functions that give me a list of answers to render
+def get_answers(questions):
+    # Initialize an empty dictionary to store answers for each question
+    answers_dict = {}
+
+    # Iterate through each question dictionary
+    for question in questions:
+        question_id = question['question_id']
+
+        # Fetch answers from the database based on question_id
+        answers = db.execute("SELECT * FROM Answers WHERE question_id = ?", question_id)
+
+        # Store the answers in the answers_dict with question_id as the key
+        answers_dict[question_id] = answers
+
+    return answers_dict
+
+@app.route('/quiz/<int:quiz_id>')
+@login_required
+def quiz(quiz_id):
+    # Fetch data from the database based on quiz_id
+    quiz = db.execute("SELECT * FROM Quizzes WHERE quiz_id = ?",quiz_id)
+
+    questions = db.execute("SELECT * FROM Questions WHERE quiz_id = ?",quiz_id)
+
+    answers = get_answers(questions)
+                    
+    # Render the quiz template with the fetched data
+    return render_template('quiz.html',quiz_id = quiz_id,quiz= quiz, questions= questions ,answers  = answers)
+    # return render_template('quiz.html', quiz_id=quiz_id,quiz=quiz,questions = questions,answers= answers)

@@ -14,6 +14,16 @@
   --logoS: 100px;
 }
 
+body {
+  min-height: 100vh;
+  /*temporary you can remove it, i just applied it to have a full screen view of my work*/
+  min-width: 100%;
+  background: url(/static/background.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
 
 
 .navbar {
@@ -83,15 +93,8 @@ h1 i{
 .header {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  /*temporary you can remove it, i just applied it to have a full screen view of my work*/
-  min-width: 100%;
-  background: url(/static/background.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
 }
+
 
 .main{
   padding: 6% 2%;
@@ -145,3 +148,8 @@ footer{
 }
 
 
+@media (max-width: 768px) {
+  .header {
+    background-position: bottom; /* Adjust the position for mobile screens */
+  }
+}

@@ -23,6 +23,14 @@
     transform-style: preserve-3d;
     box-shadow: rgba(5, 71, 17, 0) 40px 50px 25px -40px, rgba(5, 71, 17, 0.2) 0px 25px 25px -5px;
   }
+
+  .card.even{
+    background: linear-gradient(135deg, #4B0082 0%, #800080 100%);
+  }
+
+  .card.odd {
+    background: linear-gradient(135deg, #008080 0%, #00CED1 100%);
+  }
   
   .glass {
     transform-style: preserve-3d;
@@ -46,7 +54,7 @@
   
   .content .title {
     display: block;
-    color: #333333;
+    color: #333;
     font-weight: 900;
     font-size: 20px;
   }
@@ -162,7 +170,7 @@
 
 .loading-text {
   font-family: 'Arial', sans-serif;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: bold;
   color: #FFD700;
   padding: 20px;
@@ -203,4 +211,30 @@
     grid-template-columns: 1fr 1fr;
     gap: 2.5rem;
   }
+}
+
+.q-button {
+  padding: 15px 30px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  background: linear-gradient(to right, #00BFFF, #87CEEB);
+  color: #fff;
+  cursor: pointer;
+  border-radius: 30px; /* Increased border radius for a softer look */
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+
+.q-button.odd{
+  background: linear-gradient(to right, #8a2be2, #4B0082);
+}
+
+.q-button:hover {
+  transform: scale(1.05);
+}
+
+.q-button:active {
+  transform: scale(0.95);
 }

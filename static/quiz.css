@@ -1,0 +1,62 @@
+.quiz-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #4B0082; /* Dark purple container background */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* White box shadow for a subtle effect */
+}
+
+.quiz-title {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.question {
+  margin-bottom: 20px;
+}
+
+.question-text {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.answer-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.answer-item {
+  margin-bottom: 5px;
+}
+
+.answer-label {
+  display: block;
+  padding: 10px;
+  background-color: #8A2BE2; /* Medium purple answer background */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.answer-label:hover {
+  background-color: #00BFFF; /* Light blue on hover */
+}
+
+.answer-radio {
+  display: none; /* Hide the actual radio button */
+}
+
+.submit-button {
+  background-color: #6B8E23; /* Olive green submit button */
+  color: #FFFFFF;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.submit-button:hover {
+  background-color: #556B2F; /* Darker green on hover */
+}

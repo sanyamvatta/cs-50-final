@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Quiz : {{ quiz[0]['title'] }}
+{% endblock %}
+
+
+{% block links %}
+
+<link rel="stylesheet" href="/static/quiz.css">
+
+{% endblock %}
+
+{% block main %}
+
+<div class="quiz-container">
+
+    <h1 class="quiz-title">{{ quiz[0]['title'] }}</h1>
+
+    <form method="POST" action="/submit_quiz">
+
+        {% for question in questions %}
+            <div class="question">
+                <p class="question-text">{{ question['question_text'] }}</p>
+
+                <ul class="answer-list">
+                    {% for answer in answers[question['question_id']] %}
+                        <li class="answer-item">
+                            <label class="answer-label">
+                                <input type="radio" name="question{{ question['question_id'] }}" value="{{ answer['answer_id'] }}" class="answer-radio">
+                                {{ answer['answer_text'] }}
+                            </label>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+
+        <button type="submit" class="submit-button">Submit Quiz</button>
+
+    </form>
+
+</div>
+
+{% endblock %}
