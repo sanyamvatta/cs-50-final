@@ -134,5 +134,42 @@ def quiz(quiz_id):
     answers = get_answers(questions)
                     
     # Render the quiz template with the fetched data
-    return render_template('quiz.html',quiz_id = quiz_id,quiz= quiz, questions= questions ,answers  = answers)
+    return render_template('quiz.html',str=str,quiz_id = quiz_id,quiz= quiz, questions= questions ,answers  = answers)
     # return render_template('quiz.html', quiz_id=quiz_id,quiz=quiz,questions = questions,answers= answers)
+
+
+@app.route('/quizzed',methods=['GET', 'POST'])
+@login_required
+def quizzed():
+    if request.method == 'GET':
+        return redirect('/dashboard')
+    else:
+        score = 0
+        id = request.args.get('quiz_id')
+        quiz = db.execute("SELECT * FROM Quizzes WHERE quiz_id = ?",id)
+        questions = db.execute("SELECT * FROM Questions WHERE quiz_id = ?",id)
+        answers = get_answers(questions)
+        user_responses = {}
+        for question in questions:
+            question_id = question['question_id']
+            response_key = f"question{question_id}"
+            user_responses[question_id] = request.form.get(response_key, None)
+
+        user_correctness= {}
+
+        for q in user_responses:
+            
+            check = db.execute("SELECT is_correct FROM Answers WHERE answer_id = ?",user_responses[q])
+
+            if(str(check[0]['is_correct']) == '1'):
+                user_correctness[q] = 'correct'
+                score += 1
+            else:
+                user_correctness[q] = 'incorrect'
+                score -= 0.2
+        if score < 0:
+            score = 0;
+        score = round(score*4000,2)
+
+        db.execute("INSERT INTO Scores (user_id, quiz_id, score) VALUES (?, ?, ?)",session['user_id'],request.args.get('quiz_id'),score)
+        return render_template('quizzed.html',quiz=quiz, questions=questions, answers=answers, user_responses=user_responses,user_correctness=user_correctness,score = score)

@@ -140,4 +140,11 @@ footer{
 
 a{
   text-decoration: none;
+  padding: 15px;
+}
+
+a:hover {
+  background-color: white;
+  border-radius: 50px;
+  color: black !important;
 }

@@ -37,6 +37,6 @@ CREATE TABLE Scores (
     quiz_id INTEGER NOT NULL,
     score INTEGER NOT NULL,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (user_id) REFERENCES Users(id),
     FOREIGN KEY (quiz_id) REFERENCES Quizzes(quiz_id)
 );

@@ -60,3 +60,8 @@
 .submit-button:hover {
   background-color: #556B2F; /* Darker green on hover */
 }
+
+.selected-option {
+  background-color: teal ; /* Highlight color for the selected option */
+  color: #FFFFFF; /* Text color for the selected option */
+}

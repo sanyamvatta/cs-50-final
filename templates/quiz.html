@@ -17,23 +17,24 @@
 
     <h1 class="quiz-title">{{ quiz[0]['title'] }}</h1>
 
-    <form method="POST" action="/submit_quiz">
+    <form method="POST" action="/quizzed?quiz_id={{ quiz_id }}">
 
         {% for question in questions %}
             <div class="question">
-                <p class="question-text">{{ question['question_text'] }}</p>
+                <p class="question-text">{{ "Q" + str(question['question_id']) +". " }}{{ question['question_text'] }}</p>
 
                 <ul class="answer-list">
                     {% for answer in answers[question['question_id']] %}
                         <li class="answer-item">
-                            <label class="answer-label">
-                                <input type="radio" name="question{{ question['question_id'] }}" value="{{ answer['answer_id'] }}" class="answer-radio">
+                            <label class="answer-label" onclick="highlightOption(this)">
+                                <input type="radio" name="question{{ question['question_id'] }}" value="{{ answer['answer_id'] }}"  class="answer-radio">
                                 {{ answer['answer_text'] }}
                             </label>
                         </li>
                     {% endfor %}
                 </ul>
             </div>
+            
         {% endfor %}
 
         <button type="submit" class="submit-button">Submit Quiz</button>
@@ -41,5 +42,19 @@
     </form>
 
 </div>
+{% block scripts %}
+<script>
+        function highlightOption(label) {
+        // Remove highlight from all options in the same question
+        var question = label.closest('.question');
+        var labels = question.querySelectorAll('.answer-label');
+        labels.forEach(function (item) {
+            item.classList.remove('selected-option');
+        });
 
+        // Add highlight to the selected option
+        label.classList.add('selected-option');
+    }
+</script>
+{% endblock %}
 {% endblock %}
