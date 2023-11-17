@@ -13,23 +13,28 @@
   <link rel="shortcut icon" href="/static/favicon.png" type="image/png">
 </head>
 <body>
-  <div class="header">
-      <nav class="navbar">
-          <div class="container-nav">
-          <img src="/static/favicon.png" alt="Logo" class="logo">
-          <div class="data-links nav-links">
-              <a href="/dashboard">Dashbaord</a>
-              <a href="/history">History</a>
-              <a href="/leaderboard">Global leaderboard</a>
-              <a href="/signout">Sign out</a>
-          </div>
-          <div class="data-icons">
-         <i onclick="menu()" class="menu-icon size fa-solid fa-bars"></i>
-         <i onclick="Mclose()" class="close-icon size fa-solid fa-xmark"></i>
-          </div>
+  <nav class="nav">
+    <input type="checkbox" id="nav-check">
+    <div class="nav-header">
+      <div class="nav-title">
+        <img class="logo-image" src="/static/favicon.png" alt="">
       </div>
-      </nav>
-  </div>
+    </div>
+    <div class="nav-btn">
+      <label for="nav-check">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+    </div>
+    
+    <ul class="nav-list">
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="#">History</a></li>
+      <li><a href="#">Global leaderboard</a></li>
+      <li><a href="">Sign out</a></li>
+    </ul>
+  </nav>
   <div class="main">
     {% block main %}
     
