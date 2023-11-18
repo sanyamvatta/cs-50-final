@@ -1,0 +1,47 @@
+.quiz-title {
+  font-size: 32px;
+  font-family: sans-serif;
+  text-align: center;
+  font-weight: 700;
+}
+
+th {
+  background-color: #600260 !important;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+/* Apply the pulse animation to the score text */
+.score {
+  animation: pulse 2s infinite; /* Adjust the duration as needed */
+  background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #80ff00, #00ff80, #0080ff, #0000ff, #8000ff); /* Rainbow gradient */
+  font-size: 24px; /* Adjust the font size as needed */
+  color: black !important;
+  padding: 10px;
+  border-radius: 50px;
+  text-align: center;
+}
+
+/* Add hover effect to pause animation on hover (optional) */
+.score:hover {
+  animation-play-state: paused;
+}
+
+.page-title {
+  font-size: 2rem;
+  margin: 3%;
+  text-align: center;
+}

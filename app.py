@@ -156,6 +156,7 @@ def quizzed():
             user_responses[question_id] = request.form.get(response_key, None)
 
         user_correctness= {}
+        scores = {}
 
         for q in user_responses:
             
@@ -164,12 +165,45 @@ def quizzed():
             if(str(check[0]['is_correct']) == '1'):
                 user_correctness[q] = 'correct'
                 score += 1
+                scores[q] = 4000
             else:
                 user_correctness[q] = 'incorrect'
-                score -= 0.2
+                score -= 0.1
+                scores[q] = '-400'
         if score < 0:
             score = 0;
         score = round(score*4000,2)
 
         db.execute("INSERT INTO Scores (user_id, quiz_id, score) VALUES (?, ?, ?)",session['user_id'],request.args.get('quiz_id'),score)
-        return render_template('quizzed.html',quiz=quiz, questions=questions, answers=answers, user_responses=user_responses,user_correctness=user_correctness,score = score)
+        return render_template('quizzed.html',scores=scores,quiz=quiz, questions=questions, answers=answers, user_responses=user_responses,user_correctness=user_correctness,score = score)
+
+def calculate_percentile_rank(user,total):
+    scores = [entry['score'] for entry in total]
+    sorted_scores = sorted(scores)
+    user_postion = sorted_scores.index(user)
+    percentile_rank = (user_postion/len(sorted_scores)) * 100
+
+    return percentile_rank
+
+
+
+@app.route('/history')
+@login_required
+def history():
+    user_id = session['user_id']
+    history_data = db.execute("""
+        SELECT Scores.score_id, Quizzes.title, Scores.score, Scores.timestamp,Quizzes.quiz_id
+        FROM Scores
+        JOIN Quizzes ON Scores.quiz_id = Quizzes.quiz_id
+        WHERE Scores.user_id = ?
+        ORDER BY Scores.timestamp DESC
+    """, user_id)
+
+    for entry in history_data:
+        quiz_id = entry['quiz_id']
+        user_score = entry['score']
+        total_scores = db.execute("SELECT score FROM Scores WHERE quiz_id = ?", quiz_id)
+        percentile_rank = calculate_percentile_rank(user_score, total_scores)
+        entry['percentile_rank'] = f"{round(percentile_rank,2)}%"
+    
+    return render_template('history.html', history_data=history_data)
