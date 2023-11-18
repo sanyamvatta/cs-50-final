@@ -1,7 +1,7 @@
 {% extends "layout.html" %} 
 
 {% block title %}
-  History
+  Leaderboard
 {% endblock %}
 
 {% block links %}
@@ -18,18 +18,17 @@
         <th>S. no.</th>
         <th>Quiz</th>
         <th>Score</th>
-        <th>Percentile rank</th>
+        <th>User</th>
       </tr>
     </thead>
-    {% for entry in  history_data %}
+    {% for leader in  leaderboard_data %}
     <tr>
       <td> {{ loop.index }}</td>
-      <td>{{ entry['title'] }}</td>
-      <td> {{ entry['score'] }}</td>
-      <td> {{ entry['percentile_rank'] }}</td>
+      <td>{{ leader['quiz_name'] }}</td>
+      <td> {{ leader['top_score'] }}</td>
+      <td> {{ leader['top_user'] }}</td>
     </tr>
     {% endfor %}
   </table>
 </div>
-
 {% endblock %}

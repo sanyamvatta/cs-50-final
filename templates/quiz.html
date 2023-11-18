@@ -17,7 +17,7 @@
 
     <h1 class="quiz-title">{{ quiz[0]['title'] }}</h1>
 
-    <form method="POST" action="/quizzed?quiz_id={{ quiz_id }}">
+   <form method="POST" action="/quizzed?quiz_id={{ quiz_id }}">
 
         {% for question in questions %}
             <div class="question">
@@ -27,7 +27,7 @@
                     {% for answer in answers[question['question_id']] %}
                         <li class="answer-item">
                             <label class="answer-label" onclick="highlightOption(this)">
-                                <input type="radio" name="question{{ question['question_id'] }}" value="{{ answer['answer_id'] }}"  class="answer-radio">
+                                <input required type="radio" name="question{{ question['question_id'] }}" value="{{ answer['answer_id'] }}"  class="answer-radio">
                                 {{ answer['answer_text'] }}
                             </label>
                         </li>
@@ -39,7 +39,7 @@
 
         <button type="submit" class="submit-button">Submit Quiz</button>
 
-    </form>
+    </form> 
 
 </div>
 {% block scripts %}

@@ -3,7 +3,7 @@ from flask_session import Session
 from cs50 import SQL
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import apology,login_required
-
+import random
 
 app = Flask(__name__)
 
@@ -118,8 +118,11 @@ def get_answers(questions):
         # Fetch answers from the database based on question_id
         answers = db.execute("SELECT * FROM Answers WHERE question_id = ?", question_id)
 
-        # Store the answers in the answers_dict with question_id as the key
-        answers_dict[question_id] = answers
+        # Shuffle the answers
+        shuffled_answers = random.sample(answers, len(answers))
+
+        # Store the shuffled answers in the answers_dict with question_id as the key
+        answers_dict[question_id] = shuffled_answers
 
     return answers_dict
 
@@ -180,8 +183,11 @@ def quizzed():
 def calculate_percentile_rank(user,total):
     scores = [entry['score'] for entry in total]
     sorted_scores = sorted(scores)
-    user_postion = sorted_scores.index(user)
-    percentile_rank = (user_postion/len(sorted_scores)) * 100
+    user_position = sorted_scores.index(user)+1
+    percentile_rank = (user_position /len(sorted_scores)) * 100
+
+    if user == 40000:
+        return 100
 
     return percentile_rank
 
@@ -207,3 +213,29 @@ def history():
         entry['percentile_rank'] = f"{round(percentile_rank,2)}%"
     
     return render_template('history.html', history_data=history_data)
+
+
+@app.route('/leaderboard')
+@login_required
+def leaderboard():
+    leaderboard_data = db.execute('''WITH RankedScores AS (
+    SELECT
+        Scores.quiz_id,
+        Scores.user_id,
+        Users.username,
+        Scores.score,
+        RANK() OVER (PARTITION BY Scores.quiz_id ORDER BY Scores.score DESC) AS rnk
+    FROM Scores
+    JOIN Users ON Scores.user_id = Users.id
+    )
+    SELECT
+        Quizzes.title as quiz_name,
+        RankedScores.score as top_score,
+        RankedScores.username as top_user
+    FROM RankedScores
+    JOIN Quizzes ON RankedScores.quiz_id = Quizzes.quiz_id
+    WHERE rnk = 1;
+    ''')
+    
+    return render_template('leaderboard.html', leaderboard_data=leaderboard_data)
+
